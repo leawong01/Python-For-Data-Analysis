@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required metadata tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Facebook Comment Volume Prediction Dataset">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Predict Comment Volume </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header_bar">
+        
+        <form action="/" method="POST">
+          <button type="submit" id = "HomeButton" class="btn-header">Home</button>
+        </form>
+
+        <form action="/predict" method="POST">
+          <button type="submit" id = "PredictButton" class="btn-header" name="submit_button">Make prediction</button>
+        </form>
+
+      </div>
+
+      <h2>{{model}}</h2>
+
+      <br>
+      <p>Number of comments predicted : {{output}}</p>
+      
+      
+
+        <form action="/results" method="POST">
+            <div class="center">
+                <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="RegLinear">Regression Linear</button>
+                <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="RandomForest">Random Forest</button>
+                <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="DecisionTree">Decision Tree</button>
+                <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="ElasticNet">Elastic Net</button>
+            </div>
+
+        
+            <input type="hidden" id="category" name="category" value= {{list[0]}} min="1" max="107">
+            
+            <input type="hidden" id="commBefMax" name="commBefMax" value= {{list[1]}} min="0">
+            
+            <input type="hidden" id="commBefAvg" name="commBefAvg" value= {{list[2]}} min="0" step="any">
+            
+            <input type="hidden" id="commBefMed" name="commBefMed" value= {{list[3]}} min="0" step="any">
+            
+            <input type="hidden" id="commBefStd" name="commBefStd" value= {{list[4]}} min="0" step="any">
+        
+            <input type="hidden" id="comm24Max" name="comm24Max" value= {{list[5]}} min="0">
+        
+            <input type="hidden" id="comm24Avg" name="comm24Avg" value= {{list[6]}} min="0" step="any">
+        
+            <input type="hidden" id="comm24Med" name="comm24Med" value= {{list[7]}} min="0" step="any">
+        
+            <input type="hidden" id="comm24Std"  name="comm24Std" value= {{list[8]}} min="0" step="any">
+        
+            <input type="hidden" id="comm48Max" name="comm48Max" value= {{list[9]}} min="0">
+        
+            <input type="hidden" id="comm48Avg" name="comm48Avg" value= {{list[10]}} min="0" step="any">
+        
+            <input type="hidden" id="comm48Med"  name="comm48Med" value= {{list[11]}} min="0" step="any">
+        
+            <input type="hidden" id="comm48Std" name="comm48Std" value= {{list[12]}} min="0" step="any"> 
+        
+            <input type="hidden" id="comm24BefMax" name="comm24BefMax" value= {{list[13]}} min="0"> 
+        
+            <input type="hidden" id="comm24BefAvg" name="comm24BefAvg" value= {{list[14]}} min="0" step="any"> 
+        
+            <input type="hidden" id="comm24BefMed" name="comm24BefMed" value= {{list[15]}} min="0" step="any"> 
+        
+            <input type="hidden" id="comm24BefStd" name="comm24BefStd" value= {{list[16]}} min="0" step="any"> 
+        
+            <input type="hidden" id="diff2448Min" name="diff2448Min" value= {{list[17]}}> 
+        
+            <input type="hidden" id="diff2448Max" name="diff2448Max" value= {{list[18]}}> 
+        
+            <input type="hidden" id="diff2448Avg" name="diff2448Avg" value= {{list[19]}} step="any"> 
+        
+            <input type="hidden" id="diff2448Std" name="diff2448Std" value= {{list[20]}} step="any">   
+        
+            <input type="hidden" id="commBef" name="commBef" value= {{list[21]}} min="0"> 
+        
+            <input type="hidden" id="comm24" name="comm24" value= {{list[22]}} min="0"> 
+        
+            <input type="hidden" id="comm24Bef" name="comm24Bef" value= {{list[23]}}  min="0"> 
+        
+            <input type="hidden" id="diff2448" name="diff2448" value= {{list[24]}} > 
+        
+            <input type="hidden" id="baseTime" name="baseTime" value= {{list[25]}} max="72"> 
+        
+            <input type="hidden" id="promoted" name="promoted" value= {{list[26]}} min="0" max="1"> 
+        
+            <input type="hidden" id="hrs" name="hrs" value= {{list[27]}} max="24"> 
+        
+            <input type="hidden" id="day_pub" name="day_pub" value= {{list[28]}} min="1" max="7" step="1"> 
+        
+            <input type="hidden" id="day_base" name="day_base" value= {{list[29]}} min="1" max="7" step="1"> 
+        </form>
+
+        <br>
+        <p>To make a prediction with another model and the same values, click on one of the button above.</p>
+        <p>To make a new prediction with different values, click on the button 'Make prediction' in the header.</p>
+    </div>

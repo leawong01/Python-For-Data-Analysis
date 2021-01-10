@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required metadata tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Facebook Comment Volume Prediction Dataset">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Predict Comment Volume </title>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="header_bar">
+        
+        <form action="/" method="POST">
+          <button type="submit" id = "HomeButton" class="btn-header">Home</button>
+        </form>
+
+        <form action="/predict" method="POST">
+          <button type="submit" id = "PredictButton" class="btn-header" name="submit_button">Make prediction</button>
+        </form>
+
+      </div>
+
+      
+      <h2 class='title'> Welcome to the Predict Comment Volume of a Facebook Post API</h2>
+      <p>You can predict the number of comment that a post will get based on 2 characteristics : </p>
+      <p>The first is the Base Time ie how long between the publication time and the collect time. </p>
+      <p>The second is the time gap between the base time and the prediction. </p>
+
+      <br/>
+      <p>For our models, we use the fitted model with the 5th variant (each instance is multiplicated 5 times)</p>
+      
+      <br/>
+      <p>In the prediction page, you will have the possibility to change every of the 42 parameters.
+        <br/>If you don't want to fill every input, don't worry ! Each time you click on the 'Make Prediction' button, new data will be automatically filled.
+      </p>
+
+      <form action="/predict" method="POST">
+        <div class="center">
+          <button type="submit" id = "PredictButton" class="btn btn-container" name="submit_button">Start</button>
+        </div>
+      </form>
+
+      
+    </div>
+
+
+  </body>
+</html>

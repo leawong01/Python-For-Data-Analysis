@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required metadata tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Facebook Comment Volume Prediction Dataset">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Predict Comment Volume </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header_bar">
+        
+        <form action="/" method="POST">
+          <button type="submit" id = "HomeButton" class="btn-header">Home</button>
+        </form>
+
+        <form action="/predict" method="POST">
+          <button type="submit" id = "PredictButton" class="btn-header" name="submit_button">Make prediction</button>
+        </form>
+
+      </div>
+
+      <h2> Make Prediction</h2>
+      
+      
+
+      <form action="/results" method="POST">
+
+        <div class="center">
+          <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="RegLinear">Regression Linear</button>
+          <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="RandomForest">Random Forest</button>
+          <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="DecisionTree">Decision Tree</button>
+          <button type="submit" id = "PredictButton" class="btn btn-predict" name="submit_button" value="ElasticNet">Elastic Net</button>
+        </div>
+
+        <div class="fields">
+
+          <div class="items">
+            <label for="category">Category (1 to 107)</label><br/>
+            <input type="number" id="category" name="category" value= {{list[0]}} min="1" max="107">
+          </div>
+
+
+          <div class="items">
+            <label for="commBefMax">Comments Before max</label><br>
+            <input type="number" id="commBefMax" name="commBefMax" value= {{list[1]}} min="0">
+          </div>
+
+
+          <div class="items">
+            <label for="commBefAvg">Comments Before avg</label><br>
+            <input type="number" id="commBefAvg" name="commBefAvg" value= {{list[2]}} min="0" step="any">
+          </div>
+
+
+          <div class="items">
+            <label for="commBefMed">Comments Before med</label><br>
+            <input type="number" id="commBefMed" name="commBefMed" value= {{list[3]}} min="0" step="any">
+         </div>
+
+
+        <div class="items">
+          <label for="commBefStd">Comments Before std</label><br>
+          <input type="number" id="commBefStd" name="commBefStd" value= {{list[4]}} min="0" step="any">
+        </div>
+
+
+        <div class="items">
+          <label for="comm24Max">Comments 24h max</label><br/>
+          <input type="number" id="comm24Max" name="comm24Max" value= {{list[5]}} min="0">
+        </div>
+
+
+        <div class="items">
+          <label for="comm24Avg">Comments 24h avg</label><br/>
+          <input type="number" id="comm24Avg" name="comm24Avg" value= {{list[6]}} min="0" step="any">
+        </div>
+
+
+        <div class="items">
+          <label for="comm24Med">Comments 24h med</label><br/>
+          <input type="number" id="comm24Med" name="comm24Med" value= {{list[7]}} min="0" step="any">
+        </div>
+
+
+        <div class="items">
+          <label for="comm24Std">Comments 24h std</label><br/>
+          <input type="number" id="comm24Std"  name="comm24Std" value= {{list[8]}} min="0" step="any">
+        </div>
+
+
+        <div class="items">
+          <label for="comm48Max">Comments 48h max</label><br/>
+          <input type="number" id="comm48Max" name="comm48Max" value= {{list[9]}} min="0">
+        </div>
+
+
+        <div class="items">
+          <label for="comm48Avg">Comments 48h avg</label><br/>
+          <input type="number" id="comm48Avg" name="comm48Avg" value= {{list[10]}} min="0" step="any">
+        </div>
+
+
+        <div class="items">
+          <label for="comm48Med">Comments 48h med</label><br/>
+          <input type="number" id="comm48Med"  name="comm48Med" value= {{list[11]}} min="0" step="any">
+        </div>
+
+
+        <div class="items">
+          <label for="comm48Std">Comments 48h std</label><br/>
+          <input type="number" id="comm48Std" name="comm48Std" value= {{list[12]}} min="0" step="any"> 
+        </div>
+
+
+        <div class="items">
+          <label for="comm24BefMax">Comments 24h Before max</label><br/>
+          <input type="number" id="comm24BefMax" name="comm24BefMax" value= {{list[13]}} min="0"> 
+        </div>
+
+
+        <div class="items">
+          <label for="comm24BefAvg">Comments 24h Before avg</label><br/>
+          <input type="number" id="comm24BefAvg" name="comm24BefAvg" value= {{list[14]}} min="0" step="any"> 
+        </div>
+
+
+        <div class="items">
+          <label for="comm24BefMed">Comments 24h Before med</label><br/>
+          <input type="number" id="comm24BefMed" name="comm24BefMed" value= {{list[15]}} min="0" step="any"> 
+        </div>
+
+
+        <div class="items">
+          <label for="comm24BefStd">Comments 24h Before std</label><br/>
+          <input type="number" id="comm24BefStd" name="comm24BefStd" value= {{list[16]}} min="0" step="any"> 
+        </div>
+
+
+        <div class="items">
+          <label for="diff2448Min">Comments between 48h and 24h min</label><br/>
+          <input type="number" id="diff2448Min" name="diff2448Min" value= {{list[17]}}> 
+        </div>
+
+
+        <div class="items">
+          <label for="diff2448Max">Comments between 48h and 24h max</label><br/>
+          <input type="number" id="diff2448Max" name="diff2448Max" value= {{list[18]}}> 
+        </div>
+
+
+        <div class="items">
+          <label for="diff2448Avg">Comments between 48h and 24h avg</label><br/>
+          <input type="number" id="diff2448Avg" name="diff2448Avg" value= {{list[19]}} step="any"> 
+        </div>
+
+
+        <div class="items">
+          <label for="diff2448Std">Comments between 48h and 24h std</label><br/>
+          <input type="number" id="diff2448Std" name="diff2448Std" value= {{list[20]}} step="any">   
+        </div>
+
+
+        <div class="items">
+          <label for="commBef">Comments Before </label><br>
+          <input type="number" id="commBef" name="commBef" value= {{list[21]}} min="0"> 
+        </div>
+
+
+        <div class="items">
+          <label for="comm24">Comments 24h</label><br/>
+          <input type="number" id="comm24" name="comm24" value= {{list[22]}} min="0"> 
+        </div>
+
+
+        <div class="items">
+          <label for="comm24Bef">Comments 24h Before</label><br/>
+          <input type="number" id="comm24Bef" name="comm24Bef" value= {{list[23]}}  min="0"> 
+        </div>
+
+
+        <div class="items">
+          <label for="diff2448">Comments between 48h and 24h</label><br/>
+          <input type="number" id="diff2448" name="diff2448" value= {{list[24]}} > 
+        </div>
+
+
+        <div class="items">
+          <label for="baseTime">Base Time</label><br/>
+          <input type="number" id="baseTime" name="baseTime" value= {{list[25]}} max="72"> 
+        </div>
+
+
+        <div class="items">
+          <label for="promoted">Promoted</label><br/>
+          <input type="number" id="promoted" name="promoted" value= {{list[26]}} min="0" max="1"> 
+        </div>
+
+
+        <div class="items">
+          <label for="hrs">Gap between the Base Time and the Prediction</label><br/>
+          <input type="number" id="hrs" name="hrs" value= {{list[27]}} max="24"> 
+        </div>
+
+
+        <div class="items">
+          <label for="day_pub">Day of Publication (1:sunday 7:saturday)</label><br/>
+          <input type="number" id="day_pub" name="day_pub" value= {{list[28]}} min="1" max="7" step="1"> 
+        </div>
+
+        <div class="items">
+          <label for="day_base">Day of Collect (1:sunday 7:saturday)</label><br/>
+          <input type="number" id="day_base" name="day_base" value= {{list[29]}} min={{list[28]}} max={{list[28]+1}} step="1"> 
+        </div>
+
+      </div>
+
+        
+      
+      </form>
+    </div>
