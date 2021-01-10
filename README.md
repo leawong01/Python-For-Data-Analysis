@@ -89,13 +89,13 @@ Data are pre-filled but can be manually changed by the user.
 
 Before using this API, you must unzip the Random forest model in the file ./flask/models
 
-Main page :
+Main page :  
 ![alt text](./src/api1.png)
 
-Data filling page:
+Data filling page:  
 ![alt text](./src/api2.png)
 
-Result page:
+Result page:  
 ![alt text](./src/api3.png)
 ![alt text](./src/api4.png)
 ![alt text](./src/api5.png)
